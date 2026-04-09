@@ -55,11 +55,9 @@ export default function App() {
     pricingSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleWhatsApp = () => {
-    const phone = '919876543210';
-    const variantLabel = variants[selectedVariant as keyof typeof variants].label;
-    const message = `Hi! I want to order Moringa Tablets (${variantLabel})`;
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+  const handleAmazon = () => {
+    const amazonUrl = 'https://www.amazon.in/dp/B0CKZ7N7H5'; // Example ID
+    window.open(amazonUrl, '_blank');
   };
 
   const benefits = [
@@ -101,23 +99,20 @@ export default function App() {
       {/* Navigation Header */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md text-primary py-4 px-6 border-b border-primary/5">
         <div className="container mx-auto flex items-center justify-between">
-          <img src="/logo.jpg" alt="Ruchi Veda Logo" className="h-10 md:h-12 w-auto" />
+          <img src="/logo.png" alt="Ruchi Veda Logo" className="h-10 md:h-12 w-auto" />
           <nav className="hidden md:flex gap-8 text-[11px] font-black uppercase tracking-[0.2em]">
-            <a href="#" className="hover:text-secondary transition-colors">Shop All</a>
-            <a href="#benefits" className="hover:text-secondary transition-colors">Quality</a>
-            <a href="#pricing" className="hover:text-secondary transition-colors">Pricing</a>
+            <a href="#overview" className="hover:text-secondary transition-colors">Overview</a>
+            <a href="#quality" className="hover:text-secondary transition-colors">Quality</a>
+            <a href="#reviews" className="hover:text-secondary transition-colors">Reviews</a>
           </nav>
           <div className="flex items-center gap-6">
-            <button className="relative group">
-              <ShoppingCart className="w-6 h-6 group-hover:text-secondary transition-colors" />
-              <span className="absolute -top-2 -right-2 bg-secondary text-white text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
-            </button>
+            {/* Cart Icon Removed */}
           </div>
         </div>
       </header>
 
       {/* Hero Section - Product Page Style */}
-      <section className="py-12 md:py-20 bg-white">
+      <section id="overview" className="py-12 md:py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             {/* Left: Product Images */}
@@ -181,27 +176,7 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Variant Selection */}
-              <div className="mb-10">
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-4">
-                  Product Variant: <span className="text-secondary">{variants[selectedVariant as keyof typeof variants].label}</span>
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  {[1, 2, 3].map((v) => (
-                    <button
-                      key={v}
-                      onClick={() => setSelectedVariant(v)}
-                      className={`px-8 py-4 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all border-2 ${
-                        selectedVariant === v
-                          ? 'bg-primary text-white border-primary shadow-lg scale-105'
-                          : 'bg-white text-primary border-border hover:border-primary'
-                      }`}
-                    >
-                      {variants[v as keyof typeof variants].label}
-                    </button>
-                  ))}
-                </div>
-              </div>
+              {/* Variant Selection Removed */}
 
               <div className="space-y-6 mb-12">
                 <div className="flex gap-4 items-center">
@@ -219,17 +194,17 @@ export default function App() {
               </div>
 
               <div className="flex flex-col gap-4 mb-12">
+                {/* Add To Bag Removed */}
                 <button
-                  onClick={handleBuyNow}
-                  className="w-full h-20 bg-muted border-2 border-primary text-primary rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-primary hover:text-white transition-all active:scale-[0.98] shadow-xl"
+                  onClick={handleAmazon}
+                  className="w-full h-20 bg-[#FFD814] hover:bg-[#F7CA00] text-black border border-[#FCD200] rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-xl transition-all active:scale-[0.98] flex items-center justify-center gap-3"
                 >
-                  Add To Bag
-                </button>
-                <button
-                  onClick={handleWhatsApp}
-                  className="w-full h-20 bg-primary text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl hover:bg-black transition-all active:scale-[0.98]"
-                >
-                  Buy It Now
+                  <img 
+                    src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" 
+                    alt="Amazon" 
+                    className="h-5 mt-1" 
+                  />
+                  <span>BUY ON AMAZON</span>
                 </button>
               </div>
 
@@ -256,7 +231,7 @@ export default function App() {
       </section>
 
       {/* Reels Section - Social Proof Carousel */}
-      <section className="py-12 bg-white overflow-hidden">
+      <section id="reviews" className="py-12 bg-white overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="flex items-end justify-between mb-10">
             <div>
@@ -320,7 +295,7 @@ export default function App() {
       </section>
 
       {/* Values Section - High Impact Story */}
-      <section className="py-24 bg-primary text-white relative overflow-hidden">
+      <section id="quality" className="py-24 bg-primary text-white relative overflow-hidden">
         <div className="container mx-auto px-6 text-center relative z-10">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
@@ -646,7 +621,7 @@ export default function App() {
       {/* Footer */}
       <footer className="py-20 bg-background border-t border-border">
         <div className="container mx-auto px-6 text-center">
-           <img src="/logo.jpg" alt="Ruchi Veda Logo" className="h-16 w-auto mx-auto mb-10" />
+           <img src="/logo.png" alt="Ruchi Veda Logo" className="h-16 w-auto mx-auto mb-10" />
            <p className="text-muted-foreground text-sm max-w-lg mx-auto mb-12 italic">
              "Our mission is to bring the ancient purity of Vedic nutrition to the modern world through farm-to-capsule transparency."
            </p>
@@ -674,8 +649,8 @@ export default function App() {
 
       <StickyBottomCTA
         show={showStickyCTA}
-        onBuyClick={handleBuyNow}
-        onWhatsAppClick={handleWhatsApp}
+        onBuyClick={handleAmazon}
+        onWhatsAppClick={() => window.open('https://wa.me/919876543210', '_blank')}
       />
     </div>
   );

@@ -44,10 +44,14 @@ export function StickyBottomCTA({ show, onBuyClick, onWhatsAppClick }: StickyBot
               <motion.button
                 whileTap={{ scale: 0.98 }}
                 onClick={onBuyClick}
-                className="flex-1 bg-gradient-to-r from-primary to-emerald-900 text-white h-14 rounded-2xl flex items-center justify-center gap-2 transition-all font-bold text-sm shadow-xl active:opacity-90"
+                className="flex-1 bg-[#FFD814] hover:bg-[#F7CA00] text-black h-14 rounded-2xl flex items-center justify-center gap-2 transition-all font-bold text-sm shadow-xl active:opacity-90"
               >
-                <ShoppingCart className="w-4 h-4" />
-                <span>Buy Now • ₹399</span>
+                <img 
+                  src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" 
+                  alt="Amazon" 
+                  className="h-4 mt-0.5" 
+                />
+                <span>Buy on Amazon</span>
               </motion.button>
             </div>
 
