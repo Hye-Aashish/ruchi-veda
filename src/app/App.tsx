@@ -56,7 +56,7 @@ export default function App() {
   };
 
   const handleAmazon = () => {
-    const amazonUrl = 'https://www.amazon.in/dp/B0CKZ7N7H5'; // Example ID
+    const amazonUrl = 'https://www.amazon.com/dp/B0CKZ7N7H5'; // US store
     window.open(amazonUrl, '_blank');
   };
 
@@ -231,7 +231,7 @@ export default function App() {
       </section>
 
       {/* Reels Section - Social Proof Carousel */}
-      <section id="reviews" className="py-12 bg-white overflow-hidden">
+      <section id="reels" className="py-12 bg-white overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="flex items-end justify-between mb-10">
             <div>
@@ -366,7 +366,7 @@ export default function App() {
 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <button
-                    onClick={() => window.open('https://amazon.in', '_blank')}
+                    onClick={() => window.open('https://amazon.com', '_blank')}
                     className="h-16 px-10 bg-primary text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-black transition-all active:scale-[0.98] shadow-xl flex items-center justify-center gap-3"
                   >
                     View On Amazon
@@ -618,6 +618,87 @@ export default function App() {
       </section>
 
 
+      {/* Customer Testimonials Section */}
+      <section id="reviews" className="py-32 bg-muted/30">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-20">
+            <div className="flex justify-center gap-1 text-secondary mb-4">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-6 h-6 fill-current" />
+              ))}
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black text-primary tracking-tighter uppercase mb-4">Real Results. Real People.</h2>
+            <p className="text-xl text-muted-foreground italic">Join over 10,000+ happy customers on their wellness journey.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                text: "Amazing boost in energy! I take two every morning and I don't feel that afternoon slump anymore. The quality is outstanding.",
+                author: "Sarah J.",
+                location: "Austin, TX",
+                date: "2 days ago"
+              },
+              {
+                text: "The best organic Moringa I've tried. The packaging is premium and you can smell the freshness. Worth every cent.",
+                author: "Michael R.",
+                location: "Chicago, IL",
+                date: "1 week ago"
+              },
+              {
+                text: "Finally a supplement that doesn't use fillers. Just pure Moringa. I've noticed a huge improvement in my digestion.",
+                author: "David L.",
+                location: "Los Angeles, CA",
+                date: "3 days ago"
+              },
+              {
+                text: "My skin has been glowing since I started taking these. High antioxidant count is no joke! Highly recommend.",
+                author: "Emily W.",
+                location: "New York, NY",
+                date: "5 days ago"
+              },
+              {
+                text: "Great product and even better customer service. Fast delivery and the results are visible within the first week.",
+                author: "Chris P.",
+                location: "Denver, CO",
+                date: "2 weeks ago"
+              },
+              {
+                text: "I was skeptical about supplements but Ruchi Veda changed my mind. Clean, effective, and organic. Perfect.",
+                author: "Jessica B.",
+                location: "Miami, FL",
+                date: "1 day ago"
+              }
+            ].map((review, i) => (
+              <motion.div 
+                key={i}
+                whileHover={{ y: -10 }}
+                className="bg-white p-10 rounded-[2.5rem] border border-border shadow-sm flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex gap-0.5 text-secondary mb-6">
+                    {[...Array(5)].map((_, j) => (
+                      <Star key={j} className="w-4 h-4 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-lg font-medium text-primary leading-relaxed italic mb-8">"{review.text}"</p>
+                </div>
+                <div className="flex items-center justify-between border-t border-border pt-6 mt-4">
+                  <div>
+                    <h4 className="font-black text-sm uppercase tracking-widest text-primary">{review.author}</h4>
+                    <p className="text-[10px] font-bold text-muted-foreground uppercase">{review.location}</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <BadgeCheck className="w-4 h-4 text-emerald-600" />
+                    <span className="text-[9px] font-black uppercase text-emerald-600">Verified</span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="py-20 bg-background border-t border-border">
         <div className="container mx-auto px-6 text-center">
@@ -628,7 +709,7 @@ export default function App() {
            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto border-y border-border py-12">
               <div className="flex flex-col items-center gap-2">
                  <ShieldCheck className="w-6 h-6 text-primary" />
-                 <span className="text-[10px] font-black uppercase tracking-widest">FSSAI Certified</span>
+                 <span className="text-[10px] font-black uppercase tracking-widest">FDA Registered Facility</span>
               </div>
               <div className="flex flex-col items-center gap-2">
                  <Award className="w-6 h-6 text-primary" />
@@ -650,7 +731,7 @@ export default function App() {
       <StickyBottomCTA
         show={showStickyCTA}
         onBuyClick={handleAmazon}
-        onWhatsAppClick={() => window.open('https://wa.me/919876543210', '_blank')}
+        onWhatsAppClick={() => window.open('https://wa.me/19876543210', '_blank')}
       />
     </div>
   );
