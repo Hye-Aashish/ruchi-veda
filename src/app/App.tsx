@@ -754,7 +754,7 @@ export default function App() {
                  <span className="text-[10px] font-black uppercase tracking-widest">Fast Delivery</span>
               </div>
            </div>
-           <p className="mt-12 text-[10px] font-black uppercase tracking-widest text-muted-foreground">© 2024 Ruchi Veda. All Rights Reserved.</p>
+           <p className="mt-12 text-[10px] font-black uppercase tracking-widest text-muted-foreground">© 2026 Ruchi Veda. All Rights Reserved.</p>
         </div>
       </footer>
 
