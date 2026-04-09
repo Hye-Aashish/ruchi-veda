@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import {
   ShoppingCart,
   MessageCircle,
@@ -93,6 +95,31 @@ export default function App() {
       icon: Heart
     }
   ];
+
+  const testimonialSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+        }
+      }
+    ]
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -631,34 +658,35 @@ export default function App() {
             <p className="text-xl text-muted-foreground italic">Join over 10,000+ happy customers on their wellness journey.</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                text: "Amazing boost in energy! I take two every morning and I don't feel that afternoon slump anymore. The quality is outstanding.",
-                author: "Sarah J.",
-                location: "Austin, TX",
-                date: "2 days ago"
-              },
-              {
-                text: "The best organic Moringa I've tried. The packaging is premium and you can smell the freshness. Worth every cent.",
-                author: "Michael R.",
-                location: "Chicago, IL",
-                date: "1 week ago"
-              },
-              {
-                text: "Finally a supplement that doesn't use fillers. Just pure Moringa. I've noticed a huge improvement in my digestion.",
-                author: "David L.",
-                location: "Los Angeles, CA",
-                date: "3 days ago"
-              },
-              {
-                text: "My skin has been glowing since I started taking these. High antioxidant count is no joke! Highly recommend.",
-                author: "Emily W.",
-                location: "New York, NY",
-                date: "5 days ago"
-              },
-              {
-                text: "Great product and even better customer service. Fast delivery and the results are visible within the first week.",
+          <div className="testimonials-slider">
+            <Slider {...testimonialSettings}>
+              {[
+                {
+                  text: "Amazing boost in energy! I take two every morning and I don't feel that afternoon slump anymore. The quality is outstanding.",
+                  author: "Sarah J.",
+                  location: "Austin, TX",
+                  date: "2 days ago"
+                },
+                {
+                  text: "The best organic Moringa I've tried. The packaging is premium and you can smell the freshness. Worth every cent.",
+                  author: "Michael R.",
+                  location: "Chicago, IL",
+                  date: "1 week ago"
+                },
+                {
+                  text: "Finally a supplement that doesn't use fillers. Just pure Moringa. I've noticed a huge improvement in my digestion.",
+                  author: "David L.",
+                  location: "Los Angeles, CA",
+                  date: "3 days ago"
+                },
+                {
+                  text: "My skin has been glowing since I started taking these. High antioxidant count is no joke! Highly recommend.",
+                  author: "Emily W.",
+                  location: "New York, NY",
+                  date: "5 days ago"
+                },
+                {
+                  text: "Great product and even better customer service. Fast delivery and the results are visible within the first week.",
                 author: "Chris P.",
                 location: "Denver, CO",
                 date: "2 weeks ago"
@@ -670,31 +698,33 @@ export default function App() {
                 date: "1 day ago"
               }
             ].map((review, i) => (
-              <motion.div 
-                key={i}
-                whileHover={{ y: -10 }}
-                className="bg-white p-10 rounded-[2.5rem] border border-border shadow-sm flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex gap-0.5 text-secondary mb-6">
-                    {[...Array(5)].map((_, j) => (
-                      <Star key={j} className="w-4 h-4 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-lg font-medium text-primary leading-relaxed italic mb-8">"{review.text}"</p>
-                </div>
-                <div className="flex items-center justify-between border-t border-border pt-6 mt-4">
+              <div key={i} className="px-4 pb-12">
+                <motion.div 
+                  whileHover={{ y: -10 }}
+                  className="bg-white p-10 rounded-[2.5rem] border border-border shadow-sm flex flex-col justify-between h-[400px]"
+                >
                   <div>
-                    <h4 className="font-black text-sm uppercase tracking-widest text-primary">{review.author}</h4>
-                    <p className="text-[10px] font-bold text-muted-foreground uppercase">{review.location}</p>
+                    <div className="flex gap-0.5 text-secondary mb-6">
+                      {[...Array(5)].map((_, j) => (
+                        <Star key={j} className="w-4 h-4 fill-current" />
+                      ))}
+                    </div>
+                    <p className="text-lg font-medium text-primary leading-relaxed italic mb-8">"{review.text}"</p>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <BadgeCheck className="w-4 h-4 text-emerald-600" />
-                    <span className="text-[9px] font-black uppercase text-emerald-600">Verified</span>
+                  <div className="flex items-center justify-between border-t border-border pt-6 mt-auto">
+                    <div>
+                      <h4 className="font-black text-sm uppercase tracking-widest text-primary">{review.author}</h4>
+                      <p className="text-[10px] font-bold text-muted-foreground uppercase">{review.location}</p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <BadgeCheck className="w-4 h-4 text-emerald-600" />
+                      <span className="text-[9px] font-black uppercase text-emerald-600">Verified</span>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </div>
             ))}
+            </Slider>
           </div>
         </div>
       </section>
