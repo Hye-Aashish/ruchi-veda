@@ -123,7 +123,7 @@ export default function App() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 1, // Full width on mobile
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
@@ -132,16 +132,15 @@ export default function App() {
       {
         breakpoint: 1280,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 3,
           slidesToScroll: 1,
         }
       },
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
-          centerMode: false,
         }
       }
     ]
@@ -166,7 +165,7 @@ export default function App() {
 
       {/* Hero Section - Product Page Style */}
       <section id="overview" className="py-12 md:py-20 bg-white">
-        <div className="container mx-auto px-6">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             {/* Left: Product Images */}
             <div className="space-y-6">
@@ -338,7 +337,7 @@ export default function App() {
 
       {/* Values Section - High Impact Story */}
       <section id="quality" className="py-24 bg-primary text-white relative overflow-hidden">
-        <div className="container mx-auto px-6 text-center relative z-10">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-8 text-center relative z-10">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
@@ -373,7 +372,7 @@ export default function App() {
 
       {/* Amazon Trust Section */}
       <section className="py-24 bg-muted relative overflow-hidden">
-        <div className="container mx-auto px-6">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-8">
           <div className="glass-card rounded-[3rem] p-12 md:p-16 border-border overflow-hidden relative">
             <div className="absolute top-0 right-0 p-8 hidden lg:block opacity-10">
                <Package className="w-64 h-64 text-primary rotate-12" />
@@ -461,9 +460,9 @@ export default function App() {
 
       {/* Brand Philosophy & Story Cards - Updated Content */}
       <section className="py-32 bg-white">
-        <div className="container mx-auto px-6">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-8">
           <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-black text-primary tracking-tighter font-heading uppercase mb-6 leading-[0.9]">
+            <h2 className="text-3xl md:text-6xl font-black text-primary tracking-tighter font-heading uppercase mb-6 leading-[0.9]">
                Pure Moringa Capsules. <br />
                <span className="text-secondary italic">From Real Farms — Not Factories.</span>
             </h2>
@@ -585,7 +584,7 @@ export default function App() {
 
       {/* Comparison Section */}
       <section className="py-32 bg-primary text-white relative overflow-hidden">
-        <div className="container mx-auto px-6">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-8">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase font-heading mb-6">
                The Ruchi Veda <br />
@@ -597,12 +596,12 @@ export default function App() {
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                {/* Our Way */}
-               <div className="p-10 rounded-[3rem] bg-white/5 border border-white/10 relative overflow-hidden">
-                  <div className="absolute top-0 right-0 p-8 text-secondary/10">
+               <div className="p-6 md:p-10 rounded-[2.5rem] md:rounded-[3rem] bg-white/5 border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 p-8 text-secondary/10 hidden md:block">
                      <CircleCheck className="w-32 h-32" />
                   </div>
-                  <h3 className="text-2xl font-black mb-8 uppercase text-secondary">Ruchi Veda Way</h3>
-                  <ul className="space-y-6">
+                  <h3 className="text-xl md:text-2xl font-black mb-8 uppercase text-secondary">Ruchi Veda Way</h3>
+                  <ul className="space-y-4 md:space-y-6">
                      {[
                        "Direct Farm Sourced (Western India)",
                        "Traditional Sun & Air Dried",
@@ -611,19 +610,19 @@ export default function App() {
                        "Tested for Heavy Metals & Pesticides"
                      ].map((item, i) => (
                        <li key={i} className="flex items-center gap-4">
-                          <div className="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center">
-                             <Check className="w-4 h-4 text-secondary" />
+                          <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0">
+                             <Check className="w-3 h-3 md:w-4 md:h-4 text-secondary" />
                           </div>
-                          <span className="text-sm font-bold">{item}</span>
+                          <span className="text-xs md:text-sm font-bold">{item}</span>
                        </li>
                      ))}
                   </ul>
                </div>
 
                {/* Others Way */}
-               <div className="p-10 rounded-[3rem] bg-black/20 border border-white/5 opacity-50">
-                  <h3 className="text-2xl font-black mb-8 uppercase text-muted-foreground">Market Standards</h3>
-                  <ul className="space-y-6">
+               <div className="p-6 md:p-10 rounded-[2.5rem] md:rounded-[3rem] bg-black/20 border border-white/5 opacity-50">
+                  <h3 className="text-xl md:text-2xl font-black mb-8 uppercase text-muted-foreground">Market Standards</h3>
+                  <ul className="space-y-4 md:space-y-6">
                      {[
                        "Third-party sourced powders",
                        "High-heat industrial drying",
@@ -632,10 +631,10 @@ export default function App() {
                        "Rarely tested for contaminants"
                      ].map((item, i) => (
                        <li key={i} className="flex items-center gap-4 grayscale">
-                          <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center">
-                             <CircleX className="w-4 h-4 text-white/40" />
+                          <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                             <CircleX className="w-3 h-3 md:w-4 md:h-4 text-white/40" />
                           </div>
-                          <span className="text-sm font-medium text-white/60">{item}</span>
+                          <span className="text-xs md:text-sm font-medium text-white/60">{item}</span>
                        </li>
                      ))}
                   </ul>
@@ -647,7 +646,7 @@ export default function App() {
 
       {/* What's Inside Section */}
       <section className="py-32 bg-white overflow-hidden">
-        <div className="container mx-auto px-6">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-8">
           <div className="text-center mb-24">
              <h2 className="text-4xl md:text-6xl font-black text-primary tracking-tighter font-heading uppercase mb-6">
                 What's Inside <br />
@@ -734,7 +733,7 @@ export default function App() {
 
       {/* Wellness Journey Timeline */}
       <section className="py-32 bg-white overflow-hidden">
-        <div className="container mx-auto px-6">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-8">
           <div className="text-center mb-24">
             <h2 className="text-4xl md:text-6xl font-black text-primary tracking-tighter font-heading uppercase mb-6">
                Your Journey <br />
@@ -767,7 +766,7 @@ export default function App() {
 
       {/* Instagram Reels / Social Proof */}
       <section className="py-24 bg-muted">
-        <div className="container mx-auto px-6">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-8">
           <div className="flex items-center justify-between mb-12">
             <div>
               <h2 className="text-3xl md:text-5xl font-black text-primary tracking-tighter uppercase font-heading mb-2">Social Proof</h2>
@@ -824,7 +823,7 @@ export default function App() {
 
       {/* Customer Testimonials Section */}
       <section id="reviews" className="py-24 md:py-32 bg-muted/30 pb-32 md:pb-32">
-        <div className="container mx-auto px-6">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-8">
           <div className="text-center mb-16 md:mb-20">
             <h2 className="text-3xl md:text-6xl font-black text-primary tracking-tighter uppercase mb-4 leading-tight">Real Results.<br className="md:hidden" /> Real People.</h2>
             <p className="text-lg md:text-xl text-muted-foreground italic">Join over 10,000+ happy customers on their wellness journey.</p>
