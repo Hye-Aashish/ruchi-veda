@@ -121,14 +121,15 @@ export default function App() {
         breakpoint: 1280,
         settings: {
           slidesToShow: 2,
+          slidesToScroll: 1,
         }
       },
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 1,
-          centerMode: true,
-          centerPadding: '20px'
+          slidesToScroll: 1,
+          centerMode: false,
         }
       }
     ]
@@ -782,7 +783,7 @@ export default function App() {
             <p className="text-lg md:text-xl text-muted-foreground italic">Join over 10,000+ happy customers on their wellness journey.</p>
           </div>
 
-          <div className="testimonials-slider">
+          <div className="testimonials-slider w-full">
             <Slider {...testimonialSettings}>
               {[
                 {
