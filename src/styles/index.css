@@ -42,4 +42,16 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+  
+  /* Slider Dot Customization */
+  .slick-dots {
+    @apply bottom-[-20px] !important;
+  }
+  .slick-dots li button:before {
+    @apply text-primary opacity-20 !important;
+    font-size: 10px !important;
+  }
+  .slick-dots li.slick-active button:before {
+    @apply text-secondary opacity-100 !important;
+  }
 }

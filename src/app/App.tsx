@@ -58,9 +58,9 @@ export default function App() {
   const [activeImage, setActiveImage] = useState('/images/product_no_bg.png');
 
   const variants = {
-    1: { price: 18.75, original: 25.00, label: "PACK OF ONE" },
-    2: { price: 33.75, original: 45.00, label: "PACK OF TWO" },
-    3: { price: 48.75, original: 65.00, label: "PACK OF THREE" }
+    1: { price: 18.75, original: 25.00, label: "1 Bottle (60 Capsules)" },
+    2: { price: 33.75, original: 45.00, label: "2 Bottles (120 Capsules)" },
+    3: { price: 48.75, original: 65.00, label: "3 Bottles (180 Capsules)" }
   };
 
   const handleBuyNow = () => {
@@ -77,7 +77,7 @@ export default function App() {
     // ... no changes to benefits ...
     {
       title: "Natural Energy Boost",
-      description: "Feel revitalized with 800mg of pure Moringa power. Sustained energy without the caffeine crash.",
+      description: "Feel revitalized with 550mg of pure Moringa power. Sustained energy without the caffeine crash.",
       icon: Zap
     },
     {
@@ -199,8 +199,9 @@ export default function App() {
                 <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">3,247 Verified Reviews</span>
               </div>
               
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-primary mb-2 tracking-tighter leading-tight font-heading uppercase">
-                Moringa Drumstick Tablet 180
+              <h1 className="text-4xl md:text-5xl lg:text-5xl font-black text-primary mb-2 tracking-tighter leading-tight font-heading uppercase">
+                Moringa 60 Veg Capsules <br />
+                <span className="text-3xl md:text-4xl block mt-2 opacity-80">Natural Energy & Immune Support</span>
               </h1>
               <p className="text-xl text-muted-foreground font-medium mb-8 leading-tight italic">
                 From Real Farms — Not Factories. Clean, plant-based nutrition.
@@ -225,7 +226,7 @@ export default function App() {
                    <div className="w-10 h-10 bg-muted rounded-xl flex items-center justify-center">
                      <Package className="w-5 h-5 text-primary" />
                    </div>
-                   <p className="text-sm font-bold text-primary">800mg of Pure Moringa power per tablet</p>
+                   <p className="text-sm font-bold text-primary">550mg of Pure Moringa power per capsule</p>
                 </div>
                 <div className="flex gap-4 items-center">
                    <div className="w-10 h-10 bg-muted rounded-xl flex items-center justify-center">
@@ -643,7 +644,7 @@ export default function App() {
                 <div className="flex flex-col gap-10 md:gap-16 text-center lg:text-left order-3">
                    <div className="relative group">
                       <div className="hidden lg:block absolute top-0 -left-4 w-1 h-full bg-secondary scale-y-0 group-hover:scale-y-100 transition-transform origin-top" />
-                      <h4 className="text-xl font-black text-primary mb-2 uppercase tracking-tight">800mg OF PURE MORINGA POWER</h4>
+                      <h4 className="text-xl font-black text-primary mb-2 uppercase tracking-tight">550mg OF PURE MORINGA POWER</h4>
                       <p className="text-muted-foreground text-sm font-medium">Daily Dose of Energy & Immunity Support.</p>
                    </div>
                    <div className="relative group">
@@ -727,7 +728,7 @@ export default function App() {
             </button>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="flex md:grid md:grid-cols-4 gap-6 overflow-x-auto pb-10 no-scrollbar -mx-6 px-6 snap-x md:mx-0 md:px-0">
              {[
                 { url: "https://www.instagram.com/reel/DVy7mHXE7JP/", video: "/videos/reel_1.mp4" },
                 { url: "https://www.instagram.com/reel/DWzQ8tvk1hH/", video: "/videos/reel_2.mp4" },
@@ -737,7 +738,7 @@ export default function App() {
                <motion.div 
                  key={idx}
                  whileHover={{ scale: 1.02 }}
-                 className="aspect-[9/16] rounded-[2rem] bg-black overflow-hidden shadow-lg relative group cursor-pointer"
+                 className="min-w-[280px] md:min-w-0 aspect-[9/16] rounded-[2rem] bg-black overflow-hidden shadow-lg relative group cursor-pointer snap-center"
                  onClick={() => setSelectedReel(reel)}
                >
                   <video 
@@ -772,16 +773,11 @@ export default function App() {
       </section>
 
       {/* Customer Testimonials Section */}
-      <section id="reviews" className="py-32 bg-muted/30">
+      <section id="reviews" className="py-24 md:py-32 bg-muted/30 pb-32 md:pb-32">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-20">
-            <div className="flex justify-center gap-1 text-secondary mb-4">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-6 h-6 fill-current" />
-              ))}
-            </div>
-            <h2 className="text-4xl md:text-6xl font-black text-primary tracking-tighter uppercase mb-4">Real Results. Real People.</h2>
-            <p className="text-xl text-muted-foreground italic">Join over 10,000+ happy customers on their wellness journey.</p>
+          <div className="text-center mb-16 md:mb-20">
+            <h2 className="text-3xl md:text-6xl font-black text-primary tracking-tighter uppercase mb-4 leading-tight">Real Results.<br className="md:hidden" /> Real People.</h2>
+            <p className="text-lg md:text-xl text-muted-foreground italic">Join over 10,000+ happy customers on their wellness journey.</p>
           </div>
 
           <div className="testimonials-slider">
