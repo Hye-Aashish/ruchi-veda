@@ -118,15 +118,17 @@ export default function App() {
     autoplaySpeed: 5000,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1280,
         settings: {
           slidesToShow: 2,
         }
       },
       {
-        breakpoint: 768,
+        breakpoint: 1024,
         settings: {
           slidesToShow: 1,
+          centerMode: true,
+          centerPadding: '20px'
         }
       }
     ]
@@ -823,7 +825,7 @@ export default function App() {
               <div key={i} className="px-4 pb-12">
                 <motion.div 
                   whileHover={{ y: -10 }}
-                  className="bg-white p-10 rounded-[2.5rem] border border-border shadow-sm flex flex-col justify-between h-[400px]"
+                  className="bg-white p-6 md:p-10 rounded-[2.5rem] border border-border shadow-sm flex flex-col justify-between h-[400px]"
                 >
                   <div>
                     <div className="flex gap-0.5 text-secondary mb-6">
