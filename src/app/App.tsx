@@ -34,7 +34,9 @@ import {
   ChevronDown,
   Info,
   CircleCheck,
-  CircleX
+  CircleX,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 import { CountdownTimer } from './components/CountdownTimer';
@@ -59,13 +61,9 @@ export default function App() {
   const [currentHeroIdx, setCurrentHeroIdx] = useState(0);
   const [activeImage, setActiveImage] = useState(`/images/${heroImages[0]}`);
 
-  // Auto Slider Logic
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentHeroIdx((prev) => (prev + 1) % heroImages.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
+  // Auto Slider Logic Removed
+  const nextSlide = () => setCurrentHeroIdx((prev) => (prev + 1) % heroImages.length);
+  const prevSlide = () => setCurrentHeroIdx((prev) => (prev - 1 + heroImages.length) % heroImages.length);
 
   useEffect(() => {
     setActiveImage(`/images/${heroImages[currentHeroIdx]}`);
@@ -188,27 +186,29 @@ export default function App() {
                     key={activeImage}
                     src={activeImage} 
                     alt="Moringa Product" 
-                    initial={{ opacity: 0, x: 20, scale: 1.1 }}
-                    animate={{ opacity: 1, x: 0, scale: 1 }}
-                    exit={{ opacity: 0, x: -20, scale: 0.95 }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    className="w-full h-full object-contain md:object-cover"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.05 }}
+                    transition={{ duration: 0.4 }}
+                    className="w-full h-full object-contain p-8"
                   />
                 </AnimatePresence>
 
-                {/* Autoplay Progress Bar */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/10 z-20">
-                   <motion.div 
-                     key={currentHeroIdx}
-                     initial={{ width: "0%" }}
-                     animate={{ width: "100%" }}
-                     transition={{ duration: 5, ease: "linear" }}
-                     className="h-full bg-secondary"
-                   />
-                </div>
+                {/* Manual Navigation Arrows */}
+                <button 
+                  onClick={prevSlide}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-primary border border-white/20 hover:bg-white/30 transition-all opacity-0 group-hover:opacity-100"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button 
+                  onClick={nextSlide}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-primary border border-white/20 hover:bg-white/30 transition-all opacity-0 group-hover:opacity-100"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
 
-                {/* Overlay Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
+                {/* Overlay Gradient Removed */}
               </motion.div>
               
               <div className="grid grid-cols-5 gap-2">
