@@ -45,13 +45,13 @@
   
   /* Slider Dot Customization */
   .slick-dots {
-    @apply bottom-[-20px] !important;
+    @apply !bottom-[-20px];
   }
   .slick-dots li button:before {
-    @apply text-primary opacity-20 !important;
+    @apply !text-primary !opacity-20;
     font-size: 10px !important;
   }
   .slick-dots li.slick-active button:before {
-    @apply text-secondary opacity-100 !important;
+    @apply !text-secondary !opacity-100;
   }
 }
