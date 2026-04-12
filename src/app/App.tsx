@@ -55,7 +55,21 @@ export default function App() {
   const [selectedVariant, setSelectedVariant] = useState(1);
   const [selectedReel, setSelectedReel] = useState<null | { url: string, video: string }>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [activeImage, setActiveImage] = useState('/images/product_no_bg.png');
+  const heroImages = ['product_no_bg.png', 'lifestyle.jpg', 'quality.jpg', 'why.jpg', 'purity.jpg'];
+  const [currentHeroIdx, setCurrentHeroIdx] = useState(0);
+  const [activeImage, setActiveImage] = useState(`/images/${heroImages[0]}`);
+
+  // Auto Slider Logic
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentHeroIdx((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    setActiveImage(`/images/${heroImages[currentHeroIdx]}`);
+  }, [currentHeroIdx]);
 
   const variants = {
     1: { price: 18.75, original: 25.00, label: "1 Bottle (60 Capsules)" },
@@ -158,30 +172,56 @@ export default function App() {
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             {/* Left: Product Images */}
             <div className="space-y-6">
-              <motion.div
+               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="rounded-[2.5rem] overflow-hidden bg-muted relative group border border-border"
+                className="rounded-[2.5rem] overflow-hidden bg-muted relative group border border-border h-[400px] md:h-[600px] flex items-center justify-center"
               >
-                <div className="absolute top-6 left-6 z-10">
+                <div className="absolute top-6 left-6 z-20">
                    <div className="bg-secondary text-white px-6 py-2 rounded-full font-black text-[10px] uppercase tracking-widest shadow-xl">
                       Save 33% Only Today
                    </div>
                 </div>
-                <img 
-                  src={activeImage} 
-                  alt="Moringa Drumstick Tablets" 
-                  className="w-full h-auto transition-all duration-500"
-                />
+
+                <AnimatePresence mode="wait">
+                  <motion.img 
+                    key={activeImage}
+                    src={activeImage} 
+                    alt="Moringa Product" 
+                    initial={{ opacity: 0, x: 20, scale: 1.1 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: -20, scale: 0.95 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    className="w-full h-full object-contain md:object-cover"
+                  />
+                </AnimatePresence>
+
+                {/* Autoplay Progress Bar */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/10 z-20">
+                   <motion.div 
+                     key={currentHeroIdx}
+                     initial={{ width: "0%" }}
+                     animate={{ width: "100%" }}
+                     transition={{ duration: 5, ease: "linear" }}
+                     className="h-full bg-secondary"
+                   />
+                </div>
+
+                {/* Overlay Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
               </motion.div>
+              
               <div className="grid grid-cols-5 gap-2">
-                {['product_no_bg.png', 'quality.jpg', 'lifestyle.jpg', 'why.jpg', 'purity.jpg'].map((img, i) => (
+                {heroImages.map((img, i) => (
                   <div 
                     key={i} 
-                    onClick={() => setActiveImage(`/images/${img}`)}
-                    className={`aspect-square rounded-xl bg-muted border ${activeImage === `/images/${img}` ? 'border-secondary ring-2 ring-secondary/20' : 'border-border'} overflow-hidden cursor-pointer hover:border-primary transition-all`}
+                    onClick={() => setCurrentHeroIdx(i)}
+                    className={`aspect-square rounded-xl bg-muted border ${currentHeroIdx === i ? 'border-secondary ring-2 ring-secondary/20' : 'border-border'} overflow-hidden cursor-pointer hover:border-primary transition-all relative`}
                   >
-                    <img src={`/images/${img}`} className="w-full h-full object-cover grayscale-[0.5] hover:grayscale-0" alt={`Product detail ${i + 1}`} />
+                    <img src={`/images/${img}`} className="w-full h-full object-cover grayscale-[0.5] hover:grayscale-0" alt={`Tab ${i + 1}`} />
+                    {currentHeroIdx === i && (
+                      <div className="absolute inset-0 bg-secondary/10" />
+                    )}
                   </div>
                 ))}
               </div>
