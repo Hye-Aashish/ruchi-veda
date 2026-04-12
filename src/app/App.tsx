@@ -190,7 +190,14 @@ export default function App() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 1.05 }}
                     transition={{ duration: 0.4 }}
-                    className="w-full h-full object-contain p-8"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.2}
+                    onDragEnd={(_, info) => {
+                      if (info.offset.x > 100) prevSlide();
+                      if (info.offset.x < -100) nextSlide();
+                    }}
+                    className="w-full h-full object-contain p-8 cursor-grab active:cursor-grabbing touch-none"
                   />
                 </AnimatePresence>
 
