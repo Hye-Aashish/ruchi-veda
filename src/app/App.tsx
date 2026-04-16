@@ -123,23 +123,23 @@ export default function App() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 1, // Full width on mobile
+    slidesToShow: 3, // Default for large screens (PC)
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
     autoplaySpeed: 5000,
     responsive: [
       {
-        breakpoint: 1280,
+        breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
           slidesToScroll: 1,
         }
       },
       {
-        breakpoint: 1024,
+        breakpoint: 640,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1,
         }
       }
@@ -335,6 +335,66 @@ export default function App() {
         </div>
       </section>
 
+
+      {/* Instagram Reels / Social Proof */}
+      <section className="py-24 bg-muted">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-8">
+          <div className="flex items-center justify-between mb-12">
+            <div>
+              <h2 className="text-3xl md:text-5xl font-black text-primary tracking-tighter uppercase font-heading mb-2">Social Proof</h2>
+              <p className="text-lg text-muted-foreground italic">Follow our journey on Instagram @RuchiVeda</p>
+            </div>
+            <button className="hidden md:flex items-center gap-2 text-secondary font-black text-xs uppercase tracking-widest border-b-2 border-secondary pb-1">
+               Go to Instagram <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+          
+          <div className="flex md:grid md:grid-cols-4 gap-6 overflow-x-auto pb-10 no-scrollbar -mx-6 px-6 snap-x md:mx-0 md:px-0">
+             {[
+                { url: "https://www.instagram.com/reel/DVy7mHXE7JP/", video: "/videos/reel_1.mp4" },
+                { url: "https://www.instagram.com/reel/DWzQ8tvk1hH/", video: "/videos/reel_2.mp4" },
+                { url: "https://www.instagram.com/reel/DWT49xnDQMY/", video: "/videos/reel_3.mp4" },
+                { url: "https://www.instagram.com/reel/DVVQTb7jS5s/", video: "/videos/reel_4.mp4" }
+             ].map((reel, idx) => (
+               <motion.div 
+                 key={idx}
+                 whileHover={{ scale: 1.02 }}
+                 className="min-w-[280px] md:min-w-0 aspect-[9/16] rounded-[2rem] bg-black overflow-hidden shadow-lg relative group cursor-pointer snap-center"
+                 onClick={() => setSelectedReel(reel)}
+               >
+                  <video 
+                    src={reel.video}
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all z-20">
+                     <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-xl">
+                        <Play className="w-6 h-6 text-primary fill-primary ml-1" />
+                     </div>
+                  </div>
+                  <div className="absolute top-4 left-4 z-20">
+                     <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
+                        <Instagram className="w-4 h-4 text-white" />
+                     </div>
+                  </div>
+                  <div className="absolute bottom-6 left-6 z-20">
+                     <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                        <span className="text-[10px] font-black uppercase text-white tracking-widest shadow-sm">Live Social Proof</span>
+                     </div>
+                  </div>
+               </motion.div>
+             ))}
+          </div>
+        </div>
+      </section>
+
+
+
       {/* Values Section - High Impact Story */}
       <section id="quality" className="py-24 bg-primary text-white relative overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-4 md:px-8 text-center relative z-10">
@@ -370,217 +430,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* Amazon Trust Section */}
-      <section className="py-24 bg-muted relative overflow-hidden">
-        <div className="max-w-[1400px] mx-auto px-4 md:px-8">
-          <div className="glass-card rounded-[3rem] p-12 md:p-16 border-border overflow-hidden relative">
-            <div className="absolute top-0 right-0 p-8 hidden lg:block opacity-10">
-               <Package className="w-64 h-64 text-primary rotate-12" />
-            </div>
-            
-            <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
-              <div>
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="bg-white px-6 py-3 rounded-2xl shadow-sm border border-border">
-                    <img 
-                      src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" 
-                      alt="Amazon" 
-                      className="h-6"
-                    />
-                  </div>
-                  <div className="h-6 w-px bg-border" />
-                  <div className="flex gap-1 text-secondary">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-current" />
-                    ))}
-                  </div>
-                </div>
 
-                <h2 className="text-4xl md:text-5xl font-black text-primary mb-6 tracking-tighter leading-tight font-heading uppercase">
-                  Trusted By <br />
-                  <span className="text-secondary italic">Thousands On Amazon.</span>
-                </h2>
-                
-                <p className="text-xl text-muted-foreground leading-relaxed mb-10 max-w-xl">
-                  "The highest quality Moringa I've found on Amazon. The packaging is premium and the results are real. My energy levels have doubled."
-                </p>
 
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <button
-                    onClick={handleAmazon}
-                    className="h-16 px-10 bg-primary text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-black transition-all active:scale-[0.98] shadow-xl flex items-center justify-center gap-3"
-                  >
-                    View On Amazon
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                  <div className="flex items-center gap-4 px-6 py-4 rounded-2xl bg-white/50 border border-white/80">
-                    <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center">
-                       <ShieldCheck className="w-5 h-5 text-secondary" />
-                    </div>
-                    <div>
-                       <p className="text-[10px] font-black uppercase text-primary tracking-widest leading-none mb-1">Status</p>
-                       <p className="text-xs font-bold text-muted-foreground">#1 Best Seller</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                 {['trust_1.png', 'trust_2.png', 'trust_3.png', 'trust_4.png'].map((img, i) => (
-                   <div key={i} className="aspect-square rounded-[2rem] bg-white p-2 border border-border shadow-sm group hover:border-secondary transition-all">
-                      <div className="w-full h-full rounded-[1.5rem] bg-muted overflow-hidden">
-                        <img 
-                          src={`/images/${img}`} 
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
-                          alt="Product Lifestyle"
-                        />
-                      </div>
-                   </div>
-                 ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-16 flex flex-wrap justify-center gap-12 md:gap-24 opacity-40 grayscale group hover:grayscale-0 transition-all">
-             <div className="flex items-center gap-3">
-               <BadgeCheck className="w-6 h-6" />
-               <span className="text-[10px] font-black uppercase tracking-widest">Verified Purchase</span>
-             </div>
-             <div className="flex items-center gap-3">
-               <Truck className="w-6 h-6" />
-               <span className="text-[10px] font-black uppercase tracking-widest">Prime Delivery</span>
-             </div>
-             <div className="flex items-center gap-3">
-               <Award className="w-6 h-6" />
-               <span className="text-[10px] font-black uppercase tracking-widest">Top Rated 2024</span>
-             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Brand Philosophy & Story Cards - Updated Content */}
-      <section className="py-32 bg-white">
-        <div className="max-w-[1400px] mx-auto px-4 md:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-6xl font-black text-primary tracking-tighter font-heading uppercase mb-6 leading-[0.9]">
-               Pure Moringa Capsules. <br />
-               <span className="text-secondary italic">From Real Farms — Not Factories.</span>
-            </h2>
-            <p className="text-xl text-muted-foreground font-medium max-w-2xl mx-auto italic">
-              Most supplements are mass-produced. Ours starts on a real farm.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Card 1: The Farm Story */}
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="lg:col-span-2 p-12 rounded-[3.5rem] bg-primary text-white relative overflow-hidden flex flex-col justify-between"
-            >
-              <div className="relative z-10">
-                <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-10 border border-white/20">
-                   <MapPin className="w-8 h-8 text-secondary" />
-                </div>
-                <h3 className="text-4xl font-black mb-8 tracking-tighter uppercase font-heading">Our Farm Story</h3>
-                <p className="text-emerald-100/60 text-lg leading-relaxed mb-8">
-                   At Ruchi Veda, we grow moringa on our own farms in western India — where the climate naturally supports nutrient-rich leaves. Each batch is carefully harvested and slowly sun-dried to preserve its natural goodness.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                   <span className="text-[10px] font-black uppercase tracking-widest border border-white/20 px-4 py-2 rounded-full">No Chemicals</span>
-                   <span className="text-[10px] font-black uppercase tracking-widest border border-white/20 px-4 py-2 rounded-full">No Preservatives</span>
-                   <span className="text-[10px] font-black uppercase tracking-widest border border-white/20 px-4 py-2 rounded-full">No Shortcuts</span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Card 2: Why Ruchi Veda */}
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="p-10 rounded-[3.5rem] bg-muted border border-border flex flex-col"
-            >
-              <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-8 shadow-sm">
-                 <Sparkles className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="text-2xl font-black mb-6 tracking-tighter uppercase font-heading">Why Ruchi Veda</h3>
-              <ul className="space-y-4">
-                 {[
-                   "100% natural, sun-dried moringa",
-                   "Farm-grown & carefully processed",
-                   "No additives or ingredients",
-                   "Easy daily capsules — no hassle"
-                 ].map((item, i) => (
-                   <li key={i} className="flex gap-3 text-sm font-bold text-muted-foreground">
-                      <Check className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                      {item}
-                   </li>
-                 ))}
-              </ul>
-            </motion.div>
-
-            {/* Card 3: Simple To Use */}
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="p-10 rounded-[3.5rem] bg-secondary text-white flex flex-col"
-            >
-              <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mb-8 border border-white/20">
-                 <Clock className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-2xl font-black mb-6 tracking-tighter uppercase font-heading">Simple To Use</h3>
-              <div className="space-y-6">
-                 <div>
-                    <p className="text-3xl font-black mb-1">1–2</p>
-                    <p className="text-[10px] font-black uppercase tracking-widest opacity-60">Capsules Daily with water</p>
-                 </div>
-                 <p className="text-sm font-medium leading-relaxed italic opacity-80">
-                    "Easy to add to your routine. Consistent use recommended for best results."
-                 </p>
-                 <div className="h-px bg-white/20 w-full" />
-                 <p className="text-[10px] font-black uppercase tracking-widest">Farm to Daily Routine 🌿</p>
-              </div>
-            </motion.div>
-
-            {/* Card 4: Wellness Support */}
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="lg:col-span-4 p-12 rounded-[4rem] bg-muted border border-border relative overflow-hidden"
-            >
-              <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
-                 <div>
-                    <h3 className="text-4xl font-black mb-4 tracking-tighter uppercase font-heading">Daily Wellness Support</h3>
-                    <p className="text-xl text-muted-foreground italic mb-10">Naturally rich in essential nutrients and antioxidants helping support:</p>
-                    <div className="grid sm:grid-cols-2 gap-6">
-                       {[
-                         { title: "Energy & Vitality", icon: Zap },
-                         { title: "Immune System", icon: ShieldCheck },
-                         { title: "Balanced Lifestyle", icon: Activity },
-                         { title: "Skin Nourishment", icon: Heart }
-                       ].map((item, i) => (
-                         <div key={i} className="flex items-center gap-4 bg-white p-4 rounded-2xl border border-border/50">
-                            <div className="w-10 h-10 bg-muted rounded-xl flex items-center justify-center">
-                               <item.icon className="w-5 h-5 text-primary" />
-                            </div>
-                            <span className="text-xs font-black uppercase tracking-widest">{item.title}</span>
-                         </div>
-                       ))}
-                    </div>
-                 </div>
-                 <div className="md:p-12 p-8 rounded-[3rem] bg-white border border-border text-center">
-                    <h4 className="text-2xl font-black text-primary uppercase mb-4">Make The Switch Today</h4>
-                    <p className="text-lg font-bold text-muted-foreground italic leading-relaxed mb-8">
-                       Clean nutrition. Real sourcing. No compromises.
-                    </p>
-                    <button 
-                      onClick={handleAmazon}
-                      className="w-full h-16 bg-secondary text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-xl hover:scale-[1.02] transition-all"
-                    >
-                       Get Started Now 🌿
-                    </button>
-                 </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
       {/* Comparison Section */}
       <section className="py-32 bg-primary text-white relative overflow-hidden">
@@ -644,68 +496,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* What's Inside Section */}
-      <section className="py-32 bg-white overflow-hidden">
-        <div className="max-w-[1400px] mx-auto px-4 md:px-8">
-          <div className="text-center mb-24">
-             <h2 className="text-4xl md:text-6xl font-black text-primary tracking-tighter font-heading uppercase mb-6">
-                What's Inside <br />
-                <span className="text-secondary italic">Nature's Powerful Green Capsule?</span>
-             </h2>
-          </div>
 
-          <div className="relative max-w-5xl mx-auto">
-             <div className="grid lg:grid-cols-3 gap-12 items-center">
-                {/* Left Descriptors */}
-                <div className="flex flex-col gap-10 md:gap-16 text-center lg:text-right order-2 lg:order-1">
-                   {/* Left side items become center aligned on mobile, right aligned on desktop */}
-                   <div className="relative group">
-                      <div className="hidden lg:block absolute top-0 -right-4 w-1 h-full bg-secondary scale-y-0 group-hover:scale-y-100 transition-transform origin-top" />
-                      <h4 className="text-xl font-black text-primary mb-2 uppercase tracking-tight">100% PURE ORGANIC MORINGA</h4>
-                      <p className="text-muted-foreground text-sm font-medium">Only Nature Inside: No Fillers, No Additives.</p>
-                   </div>
-                   <div className="relative group">
-                      <div className="hidden lg:block absolute top-0 -right-4 w-1 h-full bg-secondary scale-y-0 group-hover:scale-y-100 transition-transform origin-top" />
-                      <h4 className="text-xl font-black text-primary mb-2 uppercase tracking-tight">27 ESSENTIAL VITAMINS & MINERALS</h4>
-                      <p className="text-muted-foreground text-sm font-medium">Complete Nutrition from Nature's Multivitamin.</p>
-                   </div>
-                </div>
-
-                {/* Center Capsule */}
-                <div className="flex justify-center order-1 lg:order-2">
-                   <div className="relative">
-                      <motion.div
-                        animate={{ y: [0, -20, 0] }}
-                        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                        className="w-full h-full"
-                      >
-                         <img 
-                           src="/images/product_no_bg.png" 
-                           alt="Moringa Capsules" 
-                           className="w-64 md:w-80 h-auto drop-shadow-2xl transition-all duration-500 hover:scale-105"
-                         />
-                      </motion.div>
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-secondary/5 rounded-full blur-3xl -z-10" />
-                   </div>
-                </div>
-
-                {/* Right Descriptors */}
-                <div className="flex flex-col gap-10 md:gap-16 text-center lg:text-left order-3">
-                   <div className="relative group">
-                      <div className="hidden lg:block absolute top-0 -left-4 w-1 h-full bg-secondary scale-y-0 group-hover:scale-y-100 transition-transform origin-top" />
-                      <h4 className="text-xl font-black text-primary mb-2 uppercase tracking-tight">550mg OF PURE MORINGA POWER</h4>
-                      <p className="text-muted-foreground text-sm font-medium">Daily Dose of Energy & Immunity Support.</p>
-                   </div>
-                   <div className="relative group">
-                      <div className="hidden lg:block absolute top-0 -left-4 w-1 h-full bg-secondary scale-y-0 group-hover:scale-y-100 transition-transform origin-top" />
-                      <h4 className="text-xl font-black text-primary mb-2 uppercase tracking-tight">46 POTENT ANTIOXIDANTS</h4>
-                      <p className="text-muted-foreground text-sm font-medium">Protect. Detox. Rejuvenate.</p>
-                   </div>
-                </div>
-             </div>
-          </div>
-        </div>
-      </section>
 
       {/* Visual Product Guide - Improved Infographic Stack */}
       <section className="bg-white py-0 overflow-hidden">
@@ -764,62 +555,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* Instagram Reels / Social Proof */}
-      <section className="py-24 bg-muted">
-        <div className="max-w-[1400px] mx-auto px-4 md:px-8">
-          <div className="flex items-center justify-between mb-12">
-            <div>
-              <h2 className="text-3xl md:text-5xl font-black text-primary tracking-tighter uppercase font-heading mb-2">Social Proof</h2>
-              <p className="text-lg text-muted-foreground italic">Follow our journey on Instagram @RuchiVeda</p>
-            </div>
-            <button className="hidden md:flex items-center gap-2 text-secondary font-black text-xs uppercase tracking-widest border-b-2 border-secondary pb-1">
-               Go to Instagram <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-          
-          <div className="flex md:grid md:grid-cols-4 gap-6 overflow-x-auto pb-10 no-scrollbar -mx-6 px-6 snap-x md:mx-0 md:px-0">
-             {[
-                { url: "https://www.instagram.com/reel/DVy7mHXE7JP/", video: "/videos/reel_1.mp4" },
-                { url: "https://www.instagram.com/reel/DWzQ8tvk1hH/", video: "/videos/reel_2.mp4" },
-                { url: "https://www.instagram.com/reel/DWT49xnDQMY/", video: "/videos/reel_3.mp4" },
-                { url: "https://www.instagram.com/reel/DVVQTb7jS5s/", video: "/videos/reel_4.mp4" }
-             ].map((reel, idx) => (
-               <motion.div 
-                 key={idx}
-                 whileHover={{ scale: 1.02 }}
-                 className="min-w-[280px] md:min-w-0 aspect-[9/16] rounded-[2rem] bg-black overflow-hidden shadow-lg relative group cursor-pointer snap-center"
-                 onClick={() => setSelectedReel(reel)}
-               >
-                  <video 
-                    src={reel.video}
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline
-                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all z-20">
-                     <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-xl">
-                        <Play className="w-6 h-6 text-primary fill-primary ml-1" />
-                     </div>
-                  </div>
-                  <div className="absolute top-4 left-4 z-20">
-                     <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
-                        <Instagram className="w-4 h-4 text-white" />
-                     </div>
-                  </div>
-                  <div className="absolute bottom-6 left-6 z-20">
-                     <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                        <span className="text-[10px] font-black uppercase text-white tracking-widest shadow-sm">Live Social Proof</span>
-                     </div>
-                  </div>
-               </motion.div>
-             ))}
-          </div>
-        </div>
-      </section>
+
+
+
 
       {/* Customer Testimonials Section */}
       <section id="reviews" className="py-24 md:py-32 bg-muted/30 pb-32 md:pb-32">
@@ -899,7 +637,6 @@ export default function App() {
           </div>
         </div>
       </section>
-
       {/* FAQ Section */}
       <section className="py-32 bg-white border-t border-border">
         <div className="container mx-auto px-6">
