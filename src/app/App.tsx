@@ -123,16 +123,17 @@ export default function App() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3, // Default for PC (> 1024px)
+    slidesToShow: 1, // MOBILE FIRST: Default to 1 card
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
     autoplaySpeed: 5000,
+    mobileFirst: true, // Enable min-width logic
     responsive: [
       {
-        breakpoint: 1024, // Screen <= 1024px (Tablets & Mobiles)
+        breakpoint: 1024, // Screen >= 1024px
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 3,
           slidesToScroll: 1,
         }
       }
