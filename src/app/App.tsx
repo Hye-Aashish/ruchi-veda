@@ -123,21 +123,14 @@ export default function App() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3, // Default for PC
+    slidesToShow: 3, // Default for PC (> 1024px)
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
     autoplaySpeed: 5000,
     responsive: [
       {
-        breakpoint: 1024, // Tablets
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        }
-      },
-      {
-        breakpoint: 800, // Mobile (even large/high-res phones)
+        breakpoint: 1024, // Screen <= 1024px (Tablets & Mobiles)
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
